@@ -144,7 +144,8 @@ services:
     command:
       ["postgres"]
     environment:
-      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_HOST_AUTH_METHOD: "scram-sha-256"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is not set}"
     volumes:
       - "sentry-postgres:/var/lib/postgresql/data"
     shm_size: 256m
@@ -162,10 +163,11 @@ services:
       DB_USER: ${POSTGRES_USER:-postgres}
       DB_HOST: postgres
       DB_NAME: postgres
-      AUTH_TYPE: trust
+      AUTH_TYPE: scram-sha-256
       POOL_MODE: transaction
       ADMIN_USERS: postgres,sentry
       MAX_CLIENT_CONN: 10000
+      DB_PASSWORD: "${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is not set}"
 
   kafka:
     <<: *restart_policy

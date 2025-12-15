@@ -34,6 +34,7 @@ source install/ensure-files-from-examples.sh
 source install/check-memcached-backend.sh
 source install/ensure-relay-credentials.sh
 source install/generate-secret-key.sh
+source install/generate-postgres-password.sh
 source install/update-docker-images.sh
 source install/build-docker-images.sh
 source install/bootstrap-s3-nodestore.sh
