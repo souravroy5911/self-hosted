@@ -10,7 +10,7 @@ if [[ "$COMPOSE_PROFILES" == "feature-complete" ]]; then
   if [ "$($dcr --no-deps --entrypoint /bin/bash --user root vroom -c "stat -c '%U:%G' /var/vroom/sentry-profiles" 2>/dev/null)" = "vroom:vroom" ]; then
     echo "Ownership of /var/vroom/sentry-profiles is already set to vroom:vroom. Skipping chown."
   else
-    $dcr --no-deps --entrypoint /bin/bash --user root vroom -c 'chown -R vroom:vroom /var/vroom/sentry-profiles && chmod -R o+rwx /var/vroom/sentry-profiles'
+    $dcr --no-deps --entrypoint /bin/bash --user root vroom -c 'chown -R vroom:vroom /var/vroom/sentry-profiles && chmod -R 770 /var/vroom/sentry-profiles'
   fi
 
   echo "${_endgroup}"
